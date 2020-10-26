@@ -8,18 +8,18 @@
 #include <stdbool.h>
 #include <semaphore.h>
 
-// CLIENT_WAIT_SEC sets how many times in seconds a client waits while checking
-// the password caller again if his password isn't called.
+// CLIENT_MIN_THINK_SEC sets the min. time in seconds in which a client waits
+// before ordering.
 #define CLIENT_MIN_THINK_SEC 1
 int clientMaxThinkSec;
 
-// CLERK_WAIT_SEC sets how many times in seconds a clerk waits while checking for
-// the orders queue.
+// CLERK_MIN_WAIT_SEC sets the min. time in seconds in which a clerk waits while
+// after receiving a clients order.
 #define CLERK_MIN_WAIT_SEC 1
 int clerkMaxWaitSec;
 
-// COOK_WAIT_SEC sets how many times in seconds a cooker waits while checking for
-// the plates queue.
+// COOK_MIN_WAIT_SEC sets the min. time in seconds in which a cooker waits to finish 
+// preparing an order.
 #define COOK_MIN_WAIT_SEC 1
 int cookMaxWaitSec;
 
@@ -28,7 +28,7 @@ int numClients, numClerks;
 
 void parseArgs(int argc, char *argv[]) {
 	if (argc < 6) {
-		printf("not enough arguments, run with: ./dog NUM_CLIENTS NUM_CLERKS\n");
+		printf("not enough arguments, run with: ./dog numClients numClerks maxClientThink maxClerkAnnotate maxCookerWait \n");
 		exit(1);
 	}
 	numClients        = atoi(argv[1]);
